@@ -2,7 +2,10 @@
 /.git
 *.out
 *.o
+*.user
+*.cbp
 CMakeCache.txt
 cmake_install.cmake
 Makefile
 /CMakeFiles
+
