@@ -7,6 +7,7 @@
 #include <Public/DPSingleton.h>
 #include <Public/DPAdapter.h>
 #include <Public/DPBridge.h>
+#include <Public/DPProducerConsumer.h>
 
 #include <stdio.h>
 #include <limits.h>
@@ -40,8 +41,11 @@ int main()
 	//DESIGNPATTERNS::DPAdapter iDPAdapter;
 	//iDPAdapter.Play();
 
-	DESIGNPATTERNS::DPBridge iDPBridge;
-	iDPBridge.Play();
+	//DESIGNPATTERNS::DPBridge iDPBridge;
+	//iDPBridge.Play();
+
+	DESIGNPATTERNS::DPProducerConsumer iDPProducerConsumer;
+	iDPProducerConsumer.Play();
 
 	return 0;
 }

@@ -4,6 +4,8 @@
 *.o
 *.user
 *.cbp
+*.swp
+.vscode/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
