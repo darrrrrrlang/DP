@@ -10,15 +10,15 @@
 PRIVATE_BEGIN
 
 /*
-ÓÃ»§Ê¹ÓÃBuilderÄ£Ê½»ñÈ¡Ò»¸öProductÊ±£¬
-1.´´½¨Ò»¸öDirector
-2.´´½¨Ò»¸öBuilder
-3.ÀûÓÃDirectorÖ¸µ¼BuilderÉú³ÉProduct
-4.»ñÈ¡BuilderµÄProduct
+ç”¨æˆ·ä½¿ç”¨Builderæ¨¡å¼è·å–ä¸€ä¸ªProductæ—¶ï¼Œ
+1.åˆ›å»ºä¸€ä¸ªDirector
+2.åˆ›å»ºä¸€ä¸ªBuilder
+3.åˆ©ç”¨DirectoræŒ‡å¯¼Builderç”ŸæˆProduct
+4.è·å–Builderçš„Product
 
-ÓëAbstractFactory±È½Ï£º
-AbstractFactoryºÍBuilder¾ù¶ÔĞÂÔöÀàĞÍÌá¹©ÁËÁ¼ºÃµÄ·â×°¡£
-Ïà±È¶øÑÔ£¬AbstractFactoryÌá¹©ÁËÒ»ÖÖÉú³ÉÒ»ÏµÁĞÏà¹Ø²úÆ·µÄÄÜÁ¦£¬¶øBuilderÌá¹©ÁË¿ØÖÆ²úÆ·Éú²ú¹ı³ÌµÄÄÜÁ¦¡£
+ä¸AbstractFactoryæ¯”è¾ƒï¼š
+AbstractFactoryå’ŒBuilderå‡å¯¹æ–°å¢ç±»å‹æä¾›äº†è‰¯å¥½çš„å°è£…ã€‚
+ç›¸æ¯”è€Œè¨€ï¼ŒAbstractFactoryæä¾›äº†ä¸€ç§ç”Ÿæˆä¸€ç³»åˆ—ç›¸å…³äº§å“çš„èƒ½åŠ›ï¼Œè€ŒBuilderæä¾›äº†æ§åˆ¶äº§å“ç”Ÿäº§è¿‡ç¨‹çš„èƒ½åŠ›ã€‚
 
 */
 

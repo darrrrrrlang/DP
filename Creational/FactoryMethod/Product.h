@@ -7,7 +7,7 @@
 EXAMPLE_BEGIN
 
 /*
-用来作画的纸
+鐢ㄦ潵浣滅敾鐨勭焊
 */
 
 class Pen

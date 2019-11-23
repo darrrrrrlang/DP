@@ -4,5 +4,5 @@
 
 void DESIGNPATTERNS::DPClass::Play()
 {
-	/* гК╡н©╪нд╣╣ */
+	/* Х╞╥Е▐┌Х─┐Ф√┤Ф║ё */
 }

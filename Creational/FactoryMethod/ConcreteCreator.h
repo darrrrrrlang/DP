@@ -7,7 +7,7 @@
 EXAMPLE_BEGIN
 
 /*
-ËØÃè×÷¼Ò
+ç´ æä½œå®¶
 */
 
 class PencilPainter : public Painter

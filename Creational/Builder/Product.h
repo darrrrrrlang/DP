@@ -10,8 +10,8 @@ class Product
 };
 
 /*
-���ﴴ��һ��Person����ΪBuilderģʽ��Product��
-����й̶��Ĵ������̣���ÿ�����̵ı仯�ϴ��ҹ���֮����ܴ���������ϵ��
+这里创建一个Person，作为Builder模式的Product。
+其具有固定的创建过程，但每个过程的变化较大，且过程之间可能存在依赖关系。
 */
 
 class Person : public Product

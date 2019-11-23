@@ -12,8 +12,8 @@ class Prototype
 };
 
 /*
-һ����ʾ���ݣ������ṩ���û�չʾ����ʾ���ݡ�
-�����Clone()�Ƕ� ������� ��ǿ����
+一个提示内容，用以提供向用户展示的提示内容。
+这里的Clone()是对 “深拷贝” 的强调。
 */
 
 class Notice : public Prototype

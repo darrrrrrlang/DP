@@ -1,58 +1,58 @@
 
-4.2 Bridge �Ž� ����ṹ��ģʽ
+4.2 Bridge 桥接 对象结构型模式
 
-1.��ͼ
-�����󲿷�������ʵ�ֲ��ַ��룬ʹ���Ƕ����Զ����ر仯��
+1.意图
+将抽象部分与它的实现部分分离，使它们都可以独立地变化。
 
-2.����
+2.别名
 Handle/Body
 
-3.����
-��һ����������ж��ʵ��ʱ��ͨ���ü̳���Э�����ǡ������ඨ��Ըó���Ľӿڡ���������������ò�ͬ��ʽ����ʵ�֡����Ǵ˷�����ʱ�������̳л��ƽ����󲿷�������ʵ�ֲ��̶ֹ���һ��ʹ�����ԶԳ��󲿷ֺ�ʵ�ֲ��ֶ����ؽ����޸ġ���������á�
+3.动机
+当一个抽象可能有多个实现时，通常用继承来协调它们。抽象类定义对该抽象的接口。而具体的子类则用不同方式加以实现。但是此方法有时不够灵活。继承机制将抽象部分与它的实现部分固定在一起，使得难以对抽象部分和实现部分独立地进行修改、扩充和重用。
 
-4.������
-����һЩ���ʹ��Bridgeģʽ��
-- �㲻ϣ���ڳ��������ʵ�ֲ���֮����һ���̶��İ󶨹�ϵ�����������������ʱ��Ϊ���ڳ�������ʱ��ʵ�ֲ���Ӧ���Ա�ѡ������л���
-- ��ĳ����Լ�����ʵ�ֶ�Ӧ�ÿ���ͨ����������ķ����������䡣����Bridgeģʽʹ����ԶԲ�ͬ�ĳ���ӿں�ʵ�ֲ��ֽ�����ϣ����ֱ�����ǽ������䡣
-- ��һ�������ʵ�ֲ��ֵ��޸�Ӧ�Կͻ�������Ӱ�죬���ͻ��Ĵ��벻�����±��롣
-- ����Կͻ���ȫ���س����ʵ�ֲ��֡���C++�У���ı�ʾ����ӿ����ǿɼ��ġ�
-- ʹ�ü̳е����νṹ��������Ҫ���ɣ�˵������뽫һ������ֽ���������֡�
-- �����ڶ������乲��ʵ�֣�����ʹ�����ü���������ͬʱҪ��ͻ�����֪����һ�㡣һ���򵥵����ӱ���Coplien��String�࣬��������ж��������Թ���ͬһ���ַ�����ʾ��StringRep����
+4.适用性
+以下一些情况使用Bridge模式：
+- 你不希望在抽象和它的实现部分之间有一个固定的绑定关系。例如这种情况可能时因为，在程序运行时刻实现部分应可以被选择或者切换。
+- 类的抽象以及它的实现都应该可以通过生成子类的方法加以扩充。这是Bridge模式使你可以对不同的抽象接口和实现部分进行组合，并分别对它们进行扩充。
+- 对一个抽象的实现部分的修改应对客户不产生影响，即客户的代码不必重新编译。
+- 你想对客户完全隐藏抽象的实现部分。在C++中，类的表示在类接口中是可见的。
+- 使用继承的类层次结构有许多类要生成，说明你必须将一个对象分解成两个部分。
+- 你想在多个对象间共享实现（可能使用引用计数），但同时要求客户并不知道这一点。一个简单的例子便是Coplien的String类，在这个类中多个对象可以共享同一个字符串表示（StringRep）。
 
-5.�ṹ
-���ṹͼ��
+5.结构
+见结构图。
 
-6.������
+6.参与者
 Abstaction
-- ���������Ľӿ�
-- ά��һ��ָ��Implementor���Ͷ����ָ�롣
+- 定义抽象类的接口
+- 维护一个指向Implementor类型对象的指针。
 RefinedAbstraction
--����ʵ����Ľӿڣ��ýӿڲ�һ��Ҫ��Abstraction�Ľӿ���ȫһ�£���ʵ���������ӿڿ�����ȫ��ͬ��һ��������Implementor�ӿڽ��ṩ������������Abstraction�����˻�����Щ���������Ľϸ߲�εĲ�����
+-定义实现类的接口，该接口不一定要与Abstraction的接口完全一致；事实上这两个接口可以完全不同。一般来讲，Implementor接口仅提供基本操作，而Abstraction则定义了基于这些基本操作的较高层次的操作。
 ConcreteImplementor
-Abstraction��client������ת��������Implementor����
+Abstraction将client的请求转发给它的Implementor对象。
 
-8.Ч��
-Bridgeģʽ������һЩ�е㣺
-- ����ӿڼ���ʵ�ֲ��֡�һ��ʵ��δ�ز���ذ���һ���ӿ��ϡ��������ʵ�ֿ���������ʱ�̽������ã�һ��������������������ʱ�̸ı�����ʵ�֡�
-��Abstraction��Implementor���������ڽ��Ͷ�ʵ�ֲ��ֱ���ʱ�ɵ������ԣ����ı�һ��ʵ����ʱ��������Ҫ���±���Abstraction������Ŀͻ�����Ϊ�˱�֤һ�����Ĳ�ͬ�汾֮��Ķ����Ƽ����ԣ�һ��Ҫ��������ʡ�
-���⣬�ӿ���ʵ�ַ��������ڷֲ㣬�Ӷ��������ߵĽṹ��ϵͳ��ϵͳ�ĸ߲㲿�ֽ���Ҫ֪��Abstaction��Implementor���ɡ�
-- ��߿������ԡ�����Զ����ض�Abstraction��Implementor��νṹ�������䡣
-- ʵ��ϸ�ڶԿͻ�͸��������ԶԿͻ�����ʵ��ϸ�ڣ����繲��Implementor�����Լ���Ӧ�����ü������ƣ�����еĻ�����
+8.效果
+Bridge模式有以下一些有点：
+- 分离接口及其实现部分。一个实现未必不变地绑定在一个接口上。抽象类的实现可以在运行时刻进行配置，一个对象甚至可以在运行时刻改变它的实现。
+将Abstraction与Implementor分离有助于降低对实现部分编译时可的依赖性，当改变一个实现类时，并不需要重新编译Abstraction类和它的客户程序。为了保证一个类库的不同版本之间的二进制兼容性，一定要有这个性质。
+另外，接口与实现分离有助于分层，从而产生更高的结构化系统，系统的高层部分仅需要知道Abstaction和Implementor即可。
+- 提高可扩充性。你可以独立地对Abstraction和Implementor层次结构进行扩充。
+- 实现细节对客户透明。你可以对客户隐藏实现细节，例如共享Implementor对象以及相应的引用计数机制（如果有的话）。
 
-9.ʵ��
-ʹ��Bridgeģʽʱ��Ҫע������һЩ���⣺
-- ����һ��Implementor���ڽ���һ��ʵ�ֵ�ʱ��û�б�Ҫ����һ�������Implementor�ࡣ����Bridgeģʽ���˻��������Abstraction��Implementor֮����һ��һ��һ�Ĺ�ϵ��������ˣ�����ϣ���ı�һ�����ʵ�ֲ���Ӱ�����еĿͻ�����ʱ��ģʽ�ķ�����ƻ��Ƿǳ����õġ�Ҳ����˵���������±������ǣ������������Ӽ��ɡ�
-Carolan�á���¶����Ц��è��������һ������ơ���C++�У�Implementor�����ӿڿ�����һ��˽�е�ͷ�ļ��ж��壬����ļ����ṩ���ͻ���������ͶԿͻ�������һ�����ʵ�ֲ��֡�
+9.实现
+使用Bridge模式时需要注意以下一些问题：
+- 仅有一个Implementor。在仅有一个实现的时候，没有必要创建一个抽象的Implementor类。这是Bridge模式的退化情况；在Abstraction与Implementor之间有一种一对一的关系。尽管如此，当你希望改变一个类的实现不会影响已有的客户程序时，模式的分离机制还是非常有用的。也就是说，不必重新编译它们，仅需重新连接即可。
+Carolan用“常露齿嬉笑的猫”描述这一分离机制。在C++中，Implementor类的类接口可以在一个私有的头文件中定义，这个文件不提供给客户。这样你就对客户隐藏了一个类的实现部分。
 
-- ������ȷ��Implementor���󡣵����ڶ��Implementor���ʱ����Ӧ���ú��ַ������ں�ʱ�δ�ȷ��������һ��Implementor���أ�
-���Abstraction֪�����е�ConcreteImplementor�࣬���Ϳ��������Ĺ������ж����е�һ�������ʵ������������ͨ�����ݸ��������Ĳ���ȷ��ʵ������һ���ࡣ���磬���һ��collection��֧�ֶ���ʵ�֣��Ϳ��Ը���collection�Ĵ�С����ʵ������һ���ࡣ������ʵ�ֿ������ڽ�С��collection�࣬��hash��������ڽϴ��collection�ࡣ
-����һ�ַ���ʱ����ѡ��һ��ȱʡ��ʵ�֣�Ȼ�������Ҫ�ı����ʵ�֡����磬���һ��collection�Ĵ�С������һ������ֵʱ���������л�����ʵ�֣�ʹ֮�������ڱ�Ŀ�϶��collection��
-Ҳ���Դ�������һ����������һ�ξ�����
+- 创建正确的Implementor对象。当存在多个Implementor类的时候，你应该用何种方法，在何时何处确定创建哪一个Implementor类呢？
+如果Abstraction知道所有的ConcreteImplementor类，它就可以在它的构造器中对其中的一个类进行实例化，它可以通过传递给构造器的参数确定实例化哪一个类。例如，如果一个collection类支持多重实现，就可以根据collection的大小决定实例化哪一个类。链表的实现可以用于较小的collection类，而hash表则可用于较大的collection类。
+另外一种方法时首先选择一个缺省的实现，然后根据需要改变这个实现。例如，如果一个collection的大小超出了一定的阈值时，它将会切换它的实现，使之更适用于表目较多的collection。
+也可以代理给另一个对象，由它一次决定。
 
--����Implementor����Coplien�����������C++�г��õ�Handle/Body�����ڶ������乲��һЩʵ�֡�����Body��һ���������ü�������Handle������������������
+-共享Implementor对象。Coplien阐明了如何用C++中常用的Handle/Body方法在多个对象间共享一些实现。其中Body有一个对象引用计数器，Handle对它进行增减操作。
 
--���ö��ؼ̳л��ơ������á�
+-采用多重继承机制。不采用。
 
-10.����ʾ����
+10.代码示例。
 
-11.��֪Ӧ��
+11.已知应用

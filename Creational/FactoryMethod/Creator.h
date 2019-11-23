@@ -9,7 +9,7 @@ EXAMPLE_BEGIN
 class Pen;
 
 /*
-ÕâÀïµÄPainterÊÇÒ»¸ö»­¼Ò£¬ËûÔÚ»­°åÉÏ×÷»­¡£
+è¿™é‡Œçš„Painteræ˜¯ä¸€ä¸ªç”»å®¶ï¼Œä»–åœ¨ç”»æ¿ä¸Šä½œç”»ã€‚
 */
 
 class Painter

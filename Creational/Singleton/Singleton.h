@@ -8,7 +8,7 @@ class Singleton
 };
 
 /*
-ʹ�á���������ʽ���߱����̰߳�ȫ�ԡ�
+使用“饿汉”方式。具备多线程安全性。
 */
 
 class Boss : public Singleton

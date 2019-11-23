@@ -9,8 +9,8 @@ using std::endl;
 
 /*
 
-ԭ�ͣ�
-��������ʵ��һ��֪ͨ�����ࡣΪ�˹淶��������ֵ�֪ͨ������ʹ��ͳһ������������
+原型：
+这里我们实现一个通知内容类。为了规范程序里出现的通知，我们使用统一的类来管理。
 
 */
 
@@ -19,15 +19,15 @@ PRIVATE_BEGIN
 void Example()
 {
 	/*
-	����һ��ԭ�͵����ӡ�
-	��������Ҫ����һ��֪ͨ����ʱ����PrototypeManager���󼴿ɡ�
+	这是一个原型的例子。
+	当我们需要生成一个通知对象时，向PrototypeManager请求即可。
 
-	����󹤳���ȣ�ԭ��ģʽ��ǿ��������һ���ԣ��������ܸ��û�һ��ĳ�����͵Ķ��󡱡�
-	���󹤳���ǿ������һ���໥Э���Ķ���
+	与抽象工厂相比，原型模式更强调对象间的一致性，“总是能给用户一个某种类型的对象”。
+	抽象工厂更强调生成一类相互协作的对象。
 
-	ͬʱ��ԭ��ģʽ��������˶��󿽱�����������˶���һЩͨ����������ߴ���Ч�ʵĶ���Ҳ�ǳ����ʡ�
+	同时，原型模式充分利用了对象拷贝的能力，因此对于一些通过拷贝能提高创建效率的对象也非常合适。
 
-	���󹤳��ڲ�����ͬһ������ʱ��ͬ������ʹ��ԭ��ģʽ��������󴴽�ʱ�ĸ����ԡ�
+	抽象工厂内部创建同一个对象时，同样可以使用原型模式，避免对象创建时的复杂性。
 	*/
 	EXAMPLE::PrototypeManager iManager;
 	auto ptrCriticalError = iManager.CreateNotice(EXAMPLE::NoticeType::CRITICAL_ERROR);

@@ -12,7 +12,7 @@ PRIVATE_BEGIN
 void Example()
 {
 	/*
-	ÕâÀï´´½¨ÁËÒ»¸öËØÃè»­¼Ò×÷»­£¬»­¼ÒµÄ»ù±¾¹¦ÄÜÒÑ¾­ÔÚ»ùÀàÖÐÍê³É£¬µ«ÊÇ±£ÁôÁË×Ô¶¨Òå»­±ÊµÄÄÜÁ¦¡£	*/
+	è¿™é‡Œåˆ›å»ºäº†ä¸€ä¸ªç´ æç”»å®¶ä½œç”»ï¼Œç”»å®¶çš„åŸºæœ¬åŠŸèƒ½å·²ç»åœ¨åŸºç±»ä¸­å®Œæˆï¼Œä½†æ˜¯ä¿ç•™äº†è‡ªå®šä¹‰ç”»ç¬”çš„èƒ½åŠ›ã€‚	*/
 
 	std::string picture;
 	EXAMPLE::PencilPainter iPencilPainter;

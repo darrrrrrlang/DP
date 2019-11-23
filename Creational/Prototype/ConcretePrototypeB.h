@@ -6,7 +6,7 @@
 EXAMPLE_BEGIN
 
 /*
-¾ßÌåµÄÔ­ÐÍ¡£
+å…·ä½“çš„åŽŸåž‹ã€‚
 */
 
 class NoticeIllegalInput : public Notice

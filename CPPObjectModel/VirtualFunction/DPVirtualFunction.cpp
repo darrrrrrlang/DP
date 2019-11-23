@@ -8,7 +8,7 @@ using std::endl;
 PRIVATE_BEGIN
 
 /*
-������ʾC++����̳й�ϵ�ﺯ����ַ�Ĺ�ϵ���ر����麯����ʵ�ַ�ʽ��
+这里演示C++对象继承关系里函数地址的关系，特别是虚函数的实现方式。
 */
 
 class BaseA
@@ -47,33 +47,33 @@ public:
 void Example()
 {
 	/*
-	DerivedA�̳�BaseA��BaseB��
+	DerivedA继承BaseA和BaseB。
 	*/
 	DerivedA da;
 	DerivedA *pda = &da;
 	printf("address of DerivedA=%p\n", &da);
 
 	/*
-	�й����Ա����ָ���һЩ���ԡ�
-	�������һ��ָ����ĳ�Ա������ָ�룿
-	�𣺴������϶��ԣ��������յ�����Ҫһ������Ķ����������ĳ�Ա����ָ�벢����һ�������ĺ�����
-	���ǿ��Գ���ͨ���۲��Ա������ʵ�ʱ����ֵ�����������������C++����ģ�͵Ĳ���ʵ�֡�
+	有关类成员函数指针的一些测试。
+	如何声明一个指向类的成员函数的指针？
+	答：从语义上而言，由于最终调用需要一个具体的对象，因此这里的成员函数指针并不是一个独立的函数。
+	我们可以尝试通过观察成员函数里实际保存的值，猜想出来编译器对C++对象模型的部分实现。
 	*/
-	void (DerivedA::*pFunc)(void) = &DerivedA::ANormalOne; // ����һ����Ա����ָ��
-	(da.*pFunc)(); // . ����
-	(pda->*pFunc)(); // -> ����
+	void (DerivedA::*pFunc)(void) = &DerivedA::ANormalOne; // 定义一个成员函数指针
+	(da.*pFunc)(); // . 调用
+	(pda->*pFunc)(); // -> 调用
 
-	void (DerivedA::*pVirtualFunc)(void) = &DerivedA::AVirtualOne; // ����ָ�����һ���麯����ָ��
+	void (DerivedA::*pVirtualFunc)(void) = &DerivedA::AVirtualOne; // 这里指向的是一个虚函数的指针
 	(da.*pVirtualFunc)(); 
 	(pda->*pVirtualFunc)();
 
 	/*
-	��δ�����ڱ��뾯�棬��Ϊ��ĳ�Ա����ָ��û�б������Ĵ�ӡ������
-	��δ�����VC��GCC�ϵ������һ�¡�
+	这段代码存在编译警告，因为类的成员函数指针没有被合理的打印出来。
+	这段代码在VC和GCC上的输出不一致。
 
-	���������GCC��һЩ���ۣ�
-	1.�����ͨ��Ա����ָ��ָ������һ���̶���λ�á����λ���ƺ��ڴ���Ρ�
-	2.����麯��Ϊһ����С��ֵ������ͬһ���麯�������ֵ�ڻ���������е�ֵ��һ�µģ�Ҳ�в�һ�µġ������ƺ�ͬһ�����У����ֵ�����������ӵġ�
+	以下是针对GCC的一些结论：
+	1.类的普通成员函数指针指向代码段一个固定的位置。这个位置似乎在代码段。
+	2.类的虚函数为一个较小的值。对于同一个虚函数，这个值在基类和子类中的值有一致的，也有不一致的。并且似乎同一个类中，这个值总是有序增加的。
 	*/
 #if false
 	printf("address of BaseA::ANormalOne=%p\n", &BaseA::ANormalOne);
@@ -97,12 +97,12 @@ void Example()
 #endif 
 
 	/*
-	���黷��Ϊ64bit��
-	�������ǳ��Է����麯�����Ĺ��ɡ�
+	试验环境为64bit。
+	这里我们尝试分析虚函数表的构成。
 
-	��GCC���ڲ�ʵ���У�ʵ���������׵�ַ����һ��ָ���麯������ָ�롣
-	���ڴ����麯����BaseA��BaseB�����СΪ8�ֽڣ�����Ǵ洢��һ��ָ���麯������ָ�롣
-	���ڲ������麯����BaseC�����СΪ1�ֽڡ��������һ���ֽ���Ҫ��ʵ������Ҫ��һ����ַ����Ҫ��
+	在GCC的内部实现中，实例化的类首地址存有一个指向虚函数表的指针。
+	对于存在虚函数的BaseA和BaseB，其大小为8字节，这就是存储了一个指向虚函数表的指针。
+	对于不存在虚函数的BaseC，其大小为1字节。这里填充一个字节主要是实例化需要有一个地址的需要。
 	*/
 	cout << "sizeof(BaseA) = " << sizeof(BaseA) << endl;
 	cout << "sizeof(BaseB) = " << sizeof(BaseB) << endl;
@@ -115,8 +115,8 @@ void Example()
 		DerivedA iDerA;
 
 		/* 
-		���ȡ���ĵ�ַ�洢����ָ�����ַ����ָ�룬�����һ������ָ�롣
-		���������ָ�����ȡֵ���������ɵõ����ַ����洢�ĵ�ַ��			
+		这里，取出的地址存储的是指向虚地址表的指针，因此是一个二重指针。
+		对这个二重指针进行取值操作，即可得到虚地址表里存储的地址。			
 		*/
 		intptr_t **ppBaseA = reinterpret_cast<intptr_t**>(&iBaseA);
 		intptr_t **ppBaseB = reinterpret_cast<intptr_t**>(&iBaseB);
@@ -124,15 +124,15 @@ void Example()
 		intptr_t **ppDerA_2 = reinterpret_cast<intptr_t**>((char*)(&iDerA) + sizeof(intptr_t));
 
 		/*
-		�麯������洢��Ӧ�����麯����ʵ�ʵ�ַ������麯�������麯���ĸ�����Ӧ��
-		ע�������д����pp��һ��ָ��ָ�������ָ�룬��˱������������ڽ�������Ԫ������
+		虚函数表里存储的应该是虚函数的实际地址，因此虚函数表与虚函数的个数对应。
+		注意这里的写法，pp是一个指向指针数组的指针，因此必须先求数组在进行求子元素运算
 
-		��ע����VisualStudio�£��麯������0��β������GCC�£��麯������û����0��β�����ȡ����ʱʹ�ù̶���ֵ��
+		另注：在VisualStudio下，虚函数表以0结尾，而在GCC下，虚函数表并没有以0结尾，因此取参数时使用固定的值。
 
-		�ڻ�ȡ���麯���������ǽ���ת��Ϊһ����ͨ�������е��á�ע�⣬�����麯���ܼ򵥣�û��ʹ��thisָ�룬�����Ϊ�������ġ�
-		���ǿ��Է��֣�ÿ������麯�������δ洢���������麯����ַ��
-		�������࣬��д�˸���ķ����ģ���ָ��ָ���µĵ�ַ��û����д�ģ�ʹ��ԭ��ַ��
-		�ж������ģ���Ӧ�ж���麯����ָ�롣
+		在获取到虚函数表后，我们将它转换为一个普通函数进行调用。注意，由于虚函数很简单，没有使用this指针，因此行为是正常的。
+		我们可以发现，每个类的虚函数表依次存储着这个类的虚函数地址。
+		对于子类，重写了父类的方法的，则指针指向新的地址，没有重写的，使用原地址。
+		有多个基类的，对应有多个虚函数表指针。
 		*/
 		typedef void(*FuncType)(void);
 		int i = 0;
